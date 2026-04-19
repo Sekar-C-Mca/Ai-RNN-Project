@@ -61,18 +61,53 @@ The notebook includes:
 
 ## Deployment
 
+### Deploy to Hugging Face Spaces (Recommended) ⭐
+
+1. Go to https://huggingface.co/spaces
+2. Click "Create new Space"
+   - Name: `ai-rnn-sentiment` (or your preferred name)
+   - License: Choose appropriate license
+   - Space SDK: Select "Docker"
+   - Space hardware: Select "CPU basic" or higher
+3. Clone the Space repository locally
+4. Copy the following files to your Space repo:
+   - `app.py`
+   - `requirements.txt`
+   - `simple_rnn_imdb.h5`
+   - `Dockerfile`
+5. Push to the repository:
+   ```bash
+   git add .
+   git commit -m "Initial commit"
+   git push
+   ```
+6. Hugging Face will automatically build and deploy your app
+
 ### Deploy to Streamlit Cloud
 
-1. Push your repository to GitHub
+⚠️ **Note**: Streamlit Cloud has compatibility issues with TensorFlow and Python 3.14. Use Hugging Face Spaces for better TensorFlow support.
+
+~~1. Push your repository to GitHub
 2. Go to https://streamlit.io/cloud
 3. Sign in with your GitHub account
 4. Click "New app" and select your repository
 5. Set the main file to `app.py`
-6. Click "Deploy"
+6. Click "Deploy"~~
 
-### Deploy to Other Platforms
+### Deploy with Docker Locally
 
-The project can be deployed to:
+Run locally with Docker:
+```bash
+docker build -t ai-rnn-sentiment .
+docker run -p 8501:7860 ai-rnn-sentiment
+```
+
+Then visit `http://localhost:8501`
+
+### Other Deployment Platforms
+
+- **Railway**: Supports Docker deployments
+- **Render**: Supports Docker and custom environments
 - **Heroku**: Requires Procfile and additional setup
 - **AWS**: Using EC2 or Lambda
 - **Google Cloud**: Using Cloud Run
