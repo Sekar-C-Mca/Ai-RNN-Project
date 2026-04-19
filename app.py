@@ -40,9 +40,6 @@ def preprocess_text(text):
     padded_review = np.clip(padded_review, 0, 9999)
     return padded_review
 
-
-import streamlit as st
-
 # Streamlit app UI
 st.title('🎬 IMDB Movie Review Sentiment Analysis')
 st.write('Enter a movie review to classify it as positive or negative.')
